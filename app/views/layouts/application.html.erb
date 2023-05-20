@@ -17,7 +17,9 @@
     <%= render partial: "shared/navbar" %>
 
     <div class="container">
-      <%= render partial: "shared/flash" %>
+      <turbo-frame id="flash">
+        <%= render partial: "shared/flash" %>
+      </turbo-frame>
       <%= yield %>
     </div>
   </body>
