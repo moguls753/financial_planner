@@ -1,0 +1,28 @@
+# == Schema Information
+#
+# Table name: employment_contracts
+#
+#  id            :integer          not null, primary key
+#  user_id       :integer
+#  brutto        :integer
+#  netto         :integer
+#  organisation  :string
+#  vacation      :integer
+#  working_hours :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+one:
+  brutto: 1
+  netto: 1
+  organisation: MyString
+  vacation: 1
+  working_hors: 1
+
+two:
+  brutto: 1
+  netto: 1
+  organisation: MyString
+  vacation: 1
+  working_hors: 1

@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  get "/about", to: "about#index", as: :about
+
+  get "employment_contract", to: "employment_contracts#new"
+  post "employment_contract", to: "employment_contracts#create"
+  patch "employment_contract/:id", to: "employment_contracts#update"
+  get "fixed_cost", to: "fixed_costs#new"
+  post "fixed_cost", to: "fixed_costs#create"
+
+  get "about", to: "about#index", as: :about
 
   get "password", to: "passwords#edit", as: :edit_password
   patch "password", to: "passwords#update"

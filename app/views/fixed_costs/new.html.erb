@@ -1,0 +1,36 @@
+<h1 class="mx-5 mb-5">Fixkosten bearbeiten</h1>
+
+<%= form_with model: @fixed_cost, url: fixed_cost_path, html: {class: "mx-5"} do |form| %>
+  <div class="mb-3">
+    <%= form.label :miete %>
+    <%= form.text_field :rent, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :strom %>
+    <%= form.text_field :electricity, class: "form-control"  %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :internet %>
+    <%= form.text_field :internet, class: "form-control"  %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :lebensmittel %>
+    <%= form.text_field :food, class: "form-control"  %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :mobilfunk %>
+    <%= form.text_field :mobile, class: "form-control"  %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :sparplan %>
+    <%= form.text_field :savings_plan, class: "form-control"  %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :verschiedenes %>
+    <%= form.text_field :misc, class: "form-control"  %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit "Speichern", class: "btn btn-primary" %>
+  </div>
+<% end %>

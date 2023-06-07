@@ -1,0 +1,74 @@
+<div class="mx-5 mb-5">
+  <h1>Einkommensverhältnisse bearbeiten/erstellen</h1>
+
+  <nav>
+    <div class="nav nav-tabs my-4 justify-content-center" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="new-tab" data-bs-toggle="tab" data-bs-target="#new" type="button" role="tab" aria-controls="new" aria-selected="true">Neu</button>
+      <% Current.user.employment_contracts.each do |contract| %>
+        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#<%= contract.id %>" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><%= contract.organisation %></button>
+      <% end %>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="new" role="tabpanel" aria-labelledby="new-tab" tabindex="0">
+        <%= form_with model: @employment_contract, url: employment_contract_path do |form| %>
+          <div class="mb-3">
+            <%= form.label :firma %>
+            <%= form.text_field :organisation, class: "form-control" %>
+          </div>
+          <div class="mb-3">
+            <%= form.label :brutto %>
+            <%= form.text_field :brutto, class: "form-control"  %>
+          </div>
+          <div class="mb-3">
+            <%= form.label :netto %>
+            <%= form.text_field :netto, class: "form-control"  %>
+          </div>
+          <div class="mb-3">
+            <%= form.label :urlaubstage %>
+            <%= form.text_field :vacation, class: "form-control"  %>
+          </div>
+          <div class="mb-3">
+            <%= form.label :wochenstunden %>
+            <%= form.text_field :working_hours, class: "form-control"  %>
+          </div>
+
+          <div class="mb-3">
+            <%= form.submit "Speichern", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    <% Current.user.employment_contracts.each do |contract| %>
+      <div class="tab-pane fade show" id="<%= contract.id %>" role="tabpanel" aria-labelledby="<%= contract.id %>-tab" tabindex="0">
+        <%= form_with model: @employment_contract, url: employment_contract_path do |form| %>
+          <% binding.pry %>
+          <div class="mb-3">
+            <%= form.label :firma %>
+            <%= form.text_field :organisation, class: "form-control", value: contract.organisation %>
+          </div>
+          <div class="mb-3">
+            <%= form.label :brutto %>
+            <%= form.text_field :brutto, class: "form-control", value: contract.brutto  %>
+          </div>
+          <div class="mb-3">
+            <%= form.label :netto %>
+            <%= form.text_field :netto, class: "form-control", value: contract.netto  %>
+          </div>
+          <div class="mb-3">
+            <%= form.label :urlaubstage %>
+            <%= form.text_field :vacation, class: "form-control", value: contract.vacation  %>
+          </div>
+          <div class="mb-3">
+            <%= form.label :wochenstunden %>
+            <%= form.text_field :working_hours, class: "form-control", value: contract.working_hours  %>
+          </div>
+
+          <div class="mb-3">
+            <%= form.submit "Speichern", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
