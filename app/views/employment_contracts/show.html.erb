@@ -1,0 +1,11 @@
+<div class="mx-5 mb-5">
+  <h1>Vertrag</h1>
+  <p><%= @employment_contract.organisation %></p>
+
+  <%= link_to "Vertrag bearbeiten", edit_employment_contract_path(@employment_contract) %>
+  <%= link_to "Löschen", employment_contract_path(@employment_contract), data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              } %>
+</div>
+

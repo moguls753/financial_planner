@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
 
-  get "employment_contract", to: "employment_contracts#new"
-  post "employment_contract", to: "employment_contracts#create"
-  patch "employment_contract/:id", to: "employment_contracts#update"
-  get "fixed_cost", to: "fixed_costs#new"
-  post "fixed_cost", to: "fixed_costs#create"
+  resources :employment_contracts
+
+  resources :fixed_costs
 
   get "about", to: "about#index", as: :about
 

@@ -9,10 +9,27 @@ class PasswordResetsController < ApplicationController
       PasswordMailer.with(user: @user).reset.deliver_now
     end
 
-    redirect_to root_path, notice: "Reset Link wurde an die Mail versendet."
+    redirect_to root_path, notice: "Reset Link wurde an die Mail versendet, falls User existiert."
   end
 
   def edit
+    @user = User.find_signed!(params[:token], purpose: "password_reset")
+  rescue ActiveSupport::MessageVerifier::InvalidSignature
+    redirect_to sign_in_path, alert: "Token ist abgelaufen."
+  end
+
+  def update
     @user = User.find_signed(params[:token], purpose: "password_reset")
+    if @user.update(password_params)
+      redirect_to sign_in_path, notice: "Dein Password wurde zurückgesetzt!"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def password_params
+    params.require(:user).permit(:pasword, :password_confirmation)
   end
 end

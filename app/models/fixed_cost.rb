@@ -17,6 +17,16 @@
 class FixedCost < ApplicationRecord
   belongs_to :user
 
+  BUDGET_ATTRIBUTES = [
+    "rent",
+    "electricity",
+    "internet",
+    "food",
+    "mobile",
+    "savings_plan",
+    "misc",
+  ]
+
   def as_frontend_json
     {
       Miete: rent,
@@ -27,5 +37,10 @@ class FixedCost < ApplicationRecord
       Sparplan: savings_plan,
       Verschiedenes: misc,
     }
+  end
+
+  def sum
+    keys = self.attributes.select { |k,v| !v.nil? }.keys & BUDGET_ATTRIBUTES
+    self.attributes.slice(*keys).sum { |k,v| v }
   end
 end

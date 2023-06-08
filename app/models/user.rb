@@ -23,4 +23,8 @@ class User < ApplicationRecord
   after_create do
     self.create_fixed_cost
   end
+
+  def budget
+    self.employment_contracts.sum(:netto)/12-fixed_cost.sum
+  end
 end

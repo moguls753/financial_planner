@@ -1,0 +1,12 @@
+<div class="mx-5 mb-5">
+  <h1>Übersicht der Einkommensverhältnisse</h1>
+  <ul>
+    <% @employment_contracts.each do |contract| %>
+      <li>
+        <%= link_to contract.organisation, contract %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= link_to "Neues Einkommensverhältniss anlegen", new_employment_contract_path %>
+</div>
