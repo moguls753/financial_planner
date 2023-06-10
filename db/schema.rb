@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_21_084105) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_09_135151) do
   create_table "employment_contracts", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "brutto"
-    t.integer "netto"
+    t.float "brutto"
+    t.float "netto"
     t.string "organisation"
     t.integer "vacation"
     t.integer "working_hours"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "salary_interval"
     t.index ["user_id"], name: "index_employment_contracts_on_user_id"
   end
 

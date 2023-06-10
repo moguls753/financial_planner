@@ -1,5 +1,39 @@
 <div class="mx-5 mb-5">
   <h1>Einkommensverhältniss bearbeiten</h1>
 
-  <%= render "form", employment_contract: @employment_contract %>
+  <%= form_with model: @employment_contract do |form| %>
+    <div class="mb-3">
+      <%= form.label :organisation %>
+      <%= form.text_field :organisation, class: "form-control" %>
+    </div>
+    <div class="mb-1">
+      Abrechnungszeitraum:
+        <%= form.radio_button :salary_interval, "yearly", class: "ms-2" %>
+        <%= form.label :salary_interval_yearly, "Jahr" %>
+        <%= form.radio_button :salary_interval, "monthly" %>
+        <%= form.label :salary_interval_monthly, "Monat" %>
+        <%= form.radio_button :salary_interval, "hourly" %>
+        <%= form.label :salary_interval_hourly, "Stunde" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :brutto, "Brutto" %>
+      <%= form.text_field :brutto, class: "form-control"  %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :netto, "Netto" %>
+      <%= form.text_field :netto, class: "form-control"  %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :urlaubstage %>
+      <%= form.text_field :vacation, class: "form-control"  %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :wochenstunden %>
+      <%= form.text_field :working_hours, class: "form-control"  %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.submit "Speichern", class: "btn btn-primary" %>
+    </div>
+  <% end %>
 </div>

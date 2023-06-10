@@ -25,6 +25,6 @@ class User < ApplicationRecord
   end
 
   def budget
-    self.employment_contracts.sum(:netto)/12-fixed_cost.sum
+    self.employment_contracts.map(&:monthly_netto_salary).sum - fixed_cost.sum
   end
 end

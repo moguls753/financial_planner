@@ -4,6 +4,14 @@
     <%= form.text_field :organisation, class: "form-control" %>
   </div>
   <div class="mb-3">
+    <%= form.radio_button :salary_interval, "yearly" %>
+    <%= form.label :salary_interval_yearly, "Jahr" %>
+    <%= form.radio_button :salary_interval, "monthly", checked: true  %>
+    <%= form.label :salary_interval_monthly, "Monat" %>
+    <%= form.radio_button :salary_interval, "hourly" %>
+    <%= form.label :salary_interval_hourly, "Stunde" %>
+  </div>
+  <div class="mb-3">
     <%= form.label :brutto, "Brutto pro Jahr" %>
     <%= form.text_field :brutto, class: "form-control"  %>
   </div>

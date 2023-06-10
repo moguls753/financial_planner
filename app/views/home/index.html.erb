@@ -8,15 +8,13 @@
       <% Current.user.employment_contracts.each do |c| %>
         Firma: <%= c.organisation %>
         <br>
+        Jahresbruttogehalt: <%= number_to_currency(c.yearly_brutto_salary, locale: :de) %>
         <br>
-        Jahresbruttogehalt: <%= number_to_currency(c.jahresbrutto, locale: :de) %>
+        Jahresnettogehalt: <%= number_to_currency(c.yearly_netto_salary, locale: :de) %>
         <br>
-        Monatsbruttogehalt: <%= number_to_currency(c.monatsbrutto, locale: :de) %>
+        Monatsbruttogehalt: <%= number_to_currency(c.monthly_brutto_salary, locale: :de) %>
         <br>
-        <br>
-        Jahresnettogehalt: <%= number_to_currency(c.jahresnetto, locale: :de) %>
-        <br>
-        Monatsnettogehalt: <%= number_to_currency(c.monatsnetto, locale: :de) %>
+        Monatsnettogehalt: <%= number_to_currency(c.monthly_netto_salary, locale: :de) %>
         <br>
       <% end %>
     </div>

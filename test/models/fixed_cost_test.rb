@@ -4,13 +4,13 @@
 #
 #  id           :integer          not null, primary key
 #  user_id      :integer
-#  rent         :integer
-#  electricity  :integer
-#  internet     :integer
-#  food         :integer
-#  mobile       :integer
-#  savings_plan :integer
-#  misc         :integer
+#  rent         :integer          default(0)
+#  electricity  :integer          default(0)
+#  internet     :integer          default(0)
+#  food         :integer          default(0)
+#  mobile       :integer          default(0)
+#  savings_plan :integer          default(0)
+#  misc         :integer          default(0)
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #

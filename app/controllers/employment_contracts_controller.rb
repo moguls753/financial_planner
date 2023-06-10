@@ -48,7 +48,7 @@ class EmploymentContractsController < ApplicationController
   private
 
   def employment_contract_params
-    params.require(:employment_contract).permit(:organisation, :brutto, :netto, :vacation, :working_hours)
+    params.require(:employment_contract).permit(:organisation, :salary_interval, :brutto, :netto, :vacation, :working_hours)
   end
 
 end
