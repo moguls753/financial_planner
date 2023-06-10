@@ -4,17 +4,29 @@
     <% @employment_contracts.each_with_index do |contract,i| %>
       <div class="accordion-item">
         <h2 class="accordion-header">
-          <button class="accordion-button justify-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= i %>" aria-expanded="true" aria-controls="collapseOne">
+          <button class="accordion-button collapsed justify-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= i %>" aria-expanded="false" aria-controls="collapseOne">
             <%= contract.organisation %>
           </button>
         </h2>
         <div id="collapse<%= i %>" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
           <div class="accordion-body">
             <strong><%= contract.organisation %> </strong>
-            <br>
-            <%= number_to_currency(contract.brutto, locale: :de) %>
-            <br>
-            <%= link_to "Bearbeiten", contract, class: "btn btn-secondary mt-4" %>
+            <div class="mt-1 ms-1">
+              Jahresbruttogehalt: <%= number_to_currency(contract.yearly_brutto_salary, locale: :de) %>
+              <br>
+              Jahresnettogehalt: <%= number_to_currency(contract.yearly_netto_salary, locale: :de) %>
+              <br>
+              Monatsbruttogehalt: <%= number_to_currency(contract.monthly_brutto_salary, locale: :de) %>
+              <br>
+              Monatsnettogehalt: <%= number_to_currency(contract.monthly_netto_salary, locale: :de) %>
+              <br>
+              Urlaub: <%= contract.vacation %>
+              <br>
+              Wochenstunden: <%= contract.working_hours %>
+              <br>
+              aktiv: <%= contract.active %>
+            </div>
+            <%= link_to "Bearbeiten", edit_employment_contract_path(contract), class: "btn btn-secondary mt-4" %>
           </div>
         </div>
       </div>

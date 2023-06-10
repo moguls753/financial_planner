@@ -31,9 +31,28 @@
       <%= form.label :wochenstunden %>
       <%= form.text_field :working_hours, class: "form-control"  %>
     </div>
+    <div class="mb-3">
+      <%= form.label :von %>
+      <%= form.date_field :from, class: "form-control"  %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :bis %>
+      <%= form.date_field :to, class: "form-control"  %>
+    </div>
+    <div class="mb-3">
+      <%= form.check_box "active" %>
+      <%= form.label :active, "aktiv" %>
+      <i class="ms-1 bi bi-question-circle-fill" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="
+        Ist der Vertrag aktuell, also aktiv, oder alt? (wichtig für Statistiken)
+      "></i>
+    </div>
 
     <div class="mb-3">
       <%= form.submit "Speichern", class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>
+<script>
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>

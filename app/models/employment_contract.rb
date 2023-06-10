@@ -12,6 +12,9 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  salary_interval :integer
+#  active          :boolean
+#  from            :date
+#  to              :date
 #
 class EmploymentContract < ApplicationRecord
   belongs_to :user
@@ -19,6 +22,7 @@ class EmploymentContract < ApplicationRecord
   validates :organisation, presence: true
   validates :brutto, presence: true
   validates :salary_interval, presence: true
+  validates :active, presence: true
 
   enum salary_interval: [:yearly, :monthly, :hourly]
 

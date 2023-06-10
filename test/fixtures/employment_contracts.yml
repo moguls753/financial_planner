@@ -12,6 +12,9 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  salary_interval :integer
+#  active          :boolean
+#  from            :date
+#  to              :date
 #
 
 one:
