@@ -6,9 +6,9 @@
     <div class="col border border-secondary-subtle rounded me-3 px-1 py-3">
       <h5 class="text-center fw-bold mb-4">Einkommen</h5>
       <% Current.user.employment_contracts.each_with_index do |c,i| %>
-        <div class="p-2 rounded" style="<%= i.even? ? "background-color: #ebe7e1" : "" %>">
+        <div class="p-2 rounded" style="<%= i.even? ? "background-color: #f2eee9" : "" %>">
           <u><%= c.organisation %></u>
-          <div class="mt-1 ms-1">
+          <div class="mt-1">
             Jahresbruttogehalt: <%= number_to_currency(c.yearly_brutto_salary, locale: :de) %>
             <br>
             Jahresnettogehalt: <%= number_to_currency(c.yearly_netto_salary, locale: :de) %>
@@ -20,7 +20,7 @@
         </div>
       <% end %>
       <br>
-        <div class="ps-2 rounded">
+        <div class="ps-3 rounded">
           <b>Netto insgesamt: <%= number_to_currency(Current.user.netto_salary_sum, locale: :de) %></b>
         </div>
     </div>
@@ -29,13 +29,13 @@
       <h5 class="text-center fw-bold mb-4">Fixkosten</h5>
       <% Current.user.fixed_cost.as_frontend_json.each_with_index do |(key, value), i| %>
         <% if value %>
-          <div class="p-2 rounded" style="<%= i.even? ? "background-color: #ebe7e1" : "" %>">
+          <div class="p-2 rounded" style="<%= i.even? ? "background-color: #f2eee9" : "" %>">
             <%= key %>: <%= number_to_currency(value, locale: :de) %>
           </div>
         <% end %>
       <% end %>
       <br>
-        <div class="ps-2 rounded">
+        <div class="ps-3 rounded">
           <b>Ausgaben insgesamt: <%= number_to_currency(Current.user.fixed_cost.sum, locale: :de) %></b>
         </div>
     </div>

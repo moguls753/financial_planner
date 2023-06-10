@@ -1,12 +1,25 @@
 <div class="mx-5 mb-5">
-  <h1>Übersicht der Einkommensverhältnisse</h1>
-  <ul>
-    <% @employment_contracts.each do |contract| %>
-      <li>
-        <%= link_to contract.organisation, contract %>
-      </li>
+  <h1 class="mb-5">Übersicht der Einkommensverhältnisse</h1>
+  <div class="accordion" id="accordionExample">
+    <% @employment_contracts.each_with_index do |contract,i| %>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button justify-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= i %>" aria-expanded="true" aria-controls="collapseOne">
+            <%= contract.organisation %>
+          </button>
+        </h2>
+        <div id="collapse<%= i %>" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <strong><%= contract.organisation %> </strong>
+            <br>
+            <%= number_to_currency(contract.brutto, locale: :de) %>
+            <br>
+            <%= link_to "Bearbeiten", contract, class: "btn btn-secondary mt-4" %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </ul>
+  </div>
 
-  <%= link_to "Neues Einkommensverhältniss anlegen", new_employment_contract_path %>
+  <%= link_to "Neues Einkommensverhältniss anlegen", new_employment_contract_path, class: "btn btn-success mt-4" %>
 </div>
