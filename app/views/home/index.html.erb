@@ -3,32 +3,41 @@
 </div>
 <% if Current.user %>
   <div class="row mt-5">
-    <div class="col border border-secondary-subtle rounded me-3 p-3">
+    <div class="col border border-secondary-subtle rounded me-3 px-1 py-3">
       <h5 class="text-center fw-bold mb-4">Einkommen</h5>
-      <% Current.user.employment_contracts.each do |c| %>
-        Firma: <%= c.organisation %>
-        <br>
-        Jahresbruttogehalt: <%= number_to_currency(c.yearly_brutto_salary, locale: :de) %>
-        <br>
-        Jahresnettogehalt: <%= number_to_currency(c.yearly_netto_salary, locale: :de) %>
-        <br>
-        Monatsbruttogehalt: <%= number_to_currency(c.monthly_brutto_salary, locale: :de) %>
-        <br>
-        Monatsnettogehalt: <%= number_to_currency(c.monthly_netto_salary, locale: :de) %>
-        <br>
+      <% Current.user.employment_contracts.each_with_index do |c,i| %>
+        <div class="p-2 rounded" style="<%= i.even? ? "background-color: #ebe7e1" : "" %>">
+          <u><%= c.organisation %></u>
+          <div class="mt-1 ms-1">
+            Jahresbruttogehalt: <%= number_to_currency(c.yearly_brutto_salary, locale: :de) %>
+            <br>
+            Jahresnettogehalt: <%= number_to_currency(c.yearly_netto_salary, locale: :de) %>
+            <br>
+            Monatsbruttogehalt: <%= number_to_currency(c.monthly_brutto_salary, locale: :de) %>
+            <br>
+            Monatsnettogehalt: <%= number_to_currency(c.monthly_netto_salary, locale: :de) %>
+          </div>
+        </div>
       <% end %>
+      <br>
+        <div class="ps-2 rounded">
+          <b>Netto insgesamt: <%= number_to_currency(Current.user.netto_salary_sum, locale: :de) %></b>
+        </div>
     </div>
   <% if Current.user.fixed_cost %>
-    <div class="col border border-secondary-subtle rounded ms-3 p-3">
+    <div class="col border border-secondary-subtle rounded ms-3 px-1 py-3">
       <h5 class="text-center fw-bold mb-4">Fixkosten</h5>
-      <% Current.user.fixed_cost.as_frontend_json.each do |key, value| %>
+      <% Current.user.fixed_cost.as_frontend_json.each_with_index do |(key, value), i| %>
         <% if value %>
-          <%= key %>: <%= number_to_currency(value, locale: :de) %>
-          <br>
+          <div class="p-2 rounded" style="<%= i.even? ? "background-color: #ebe7e1" : "" %>">
+            <%= key %>: <%= number_to_currency(value, locale: :de) %>
+          </div>
         <% end %>
       <% end %>
       <br>
-      <b>Summe: <%= number_to_currency(Current.user.fixed_cost.sum, locale: :de) %></b>
+        <div class="ps-2 rounded">
+          <b>Ausgaben insgesamt: <%= number_to_currency(Current.user.fixed_cost.sum, locale: :de) %></b>
+        </div>
     </div>
   <% end %>
   </div>
