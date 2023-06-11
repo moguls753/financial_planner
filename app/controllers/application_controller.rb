@@ -1,4 +1,9 @@
 class ApplicationController < ActionController::Base
+  http_basic_authenticate_with(
+    name: Rails.application.credentials.admin.username,
+    password: Rails.application.credentials.admin.password,
+  )
+
   before_action :set_current_user
 
   def set_current_user
