@@ -1,4 +1,4 @@
-<div class="d-flex align-items-center justify-content-center">
+<div class="text-center">
   <h1>Finanzplaner</h1>
 </div>
 <% if Current.user %>
@@ -35,7 +35,7 @@
         <% end %>
       <% end %>
       <br>
-      <div class="ps-3 rounded mt-auto">
+      <div class="ps-3 rounded mt-3">
         <b>Ausgaben insgesamt: <%= number_to_currency(Current.user.fixed_cost.sum, locale: :de) %></b>
       </div>
     </div>
@@ -46,5 +46,9 @@
       <h5 class="text-center fw-bold mb-4">Budget</h5>
         Pro Monat: <%= number_to_currency(Current.user.budget, locale: :de) %>
     </div>
+  </div>
+<% else %>
+  <div class="text-center">
+    <%= image_tag "home_money_image.jpg" ,class: "img-fluid mt-5 border border-5 border-success-subtle", style: "max-height: 70vh; border-radius: 50%" %>
   </div>
 <% end %>
