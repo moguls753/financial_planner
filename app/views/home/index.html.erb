@@ -3,7 +3,7 @@
 </div>
 <% if Current.user %>
   <div class="row mt-5">
-    <div class="col border border-secondary-subtle rounded me-3 px-1 py-3 d-flex flex-column">
+    <div class="col border border-secondary-subtle rounded m-5 p-5 d-flex flex-column shadow">
       <h5 class="text-center fw-bold mb-4">Einkommen</h5>
       <% Current.user.employment_contracts.each_with_index do |c,i| %>
         <div class="mt-1 p-2 rounded border border-white-subtle" style="<%= i.even? ? "background-color: #f2eee9" : "background-color: #fdfdfd" %>">
@@ -25,7 +25,7 @@
       </div>
     </div>
   <% if Current.user.fixed_cost %>
-    <div class="col border border-secondary-subtle rounded ms-3 px-1 py-3 d-flex flex-column">
+    <div class="col border border-secondary-subtle rounded m-5 p-5 d-flex flex-column shadow">
       <h5 class="text-center fw-bold mb-4">Fixkosten</h5>
       <% Current.user.fixed_cost.as_frontend_json.each_with_index do |(key, value), i| %>
         <% if value %>
@@ -41,7 +41,7 @@
     </div>
   <% end %>
   </div>
-  <div class="row mt-5">
+  <div class="row mt-5 shadow-lg p-3 mb-5 bg-body rounded" id="app">
     <div class="col border border-secondary-subtle rounded p-3">
       <h5 class="text-center fw-bold mb-4">Budget</h5>
         Pro Monat: <%= number_to_currency(Current.user.budget, locale: :de) %>
