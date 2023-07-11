@@ -1,47 +1,77 @@
-<div class="text-center">
-  <h1>Finanzplaner</h1>
+<div class="p-1 text-white">
+  <h1 class="m-3">FINANZPLANER</h1>
 </div>
 <% if Current.user %>
-  <div class="row mt-5">
-    <div class="col border border-secondary-subtle rounded m-5 p-5 d-flex flex-column shadow">
-      <h5 class="text-center fw-bold mb-4">Einkommen</h5>
-      <% Current.user.employment_contracts.each_with_index do |c,i| %>
-        <div class="mt-1 p-2 rounded border border-white-subtle" style="<%= i.even? ? "background-color: #f2eee9" : "background-color: #fdfdfd" %>">
-          <u><%= c.organisation %></u>
-          <div class="mt-1">
-            Jahresbruttogehalt: <%= number_to_currency(c.yearly_brutto_salary, locale: :de) %>
-            <br>
-            Jahresnettogehalt: <%= number_to_currency(c.yearly_netto_salary, locale: :de) %>
-            <br>
-            Monatsbruttogehalt: <%= number_to_currency(c.monthly_brutto_salary, locale: :de) %>
-            <br>
-            Monatsnettogehalt: <%= number_to_currency(c.monthly_netto_salary, locale: :de) %>
-          </div>
-        </div>
-      <% end %>
-      <br>
-      <div class="ps-3 rounded mt-auto">
-        <b>Netto insgesamt: <%= number_to_currency(Current.user.netto_salary_sum, locale: :de) %></b>
+  <div class="row text-white">
+    <div class="col-lg-6">
+      <div class="rounded p-3 d-flex flex-column bg-secondary">
+        <h5 class="fs-3 lead mb-4">Einkommen</h5>
+        <table>
+          <tr style="border-top: none;">
+            <th></th>
+          <% Current.user.employment_contracts.each_with_index do |c| %>
+            <th><%= c.organisation %></th>
+          <% end %>
+          </tr>
+          <tr>
+            <th>Jahresbruttogehalt</th>
+            <% Current.user.employment_contracts.each_with_index do |c| %>
+              <td><%= number_to_currency(c.yearly_brutto_salary, locale: :de) %></td>
+            <% end %>
+          </tr>
+          <tr>
+            <th>Jahresnettogehalt</th>
+            <% Current.user.employment_contracts.each_with_index do |c| %>
+              <td><%= number_to_currency(c.yearly_netto_salary, locale: :de) %></td>
+            <% end %>
+          </tr>
+          <tr>
+            <th>Monatsbruttogehalt</th>
+            <% Current.user.employment_contracts.each_with_index do |c| %>
+              <td><%= number_to_currency(c.monthly_brutto_salary, locale: :de) %></td>
+            <% end %>
+          </tr>
+          <tr>
+            <th>Monatsnettogehalt</th>
+            <% Current.user.employment_contracts.each_with_index do |c| %>
+              <td><%= number_to_currency(c.monthly_netto_salary, locale: :de) %></td>
+            <% end %>
+          </tr>
+        </table>
       </div>
     </div>
+    <div class="col-lg-6 border rounded" id="app">
+      <div class=" d-flex flex-column bg-secondary">
+        <h5 class="fs-3 lead mb-4">Aufteilung Fixkosten</h5>
+      </div>
+    </div>
+  </div>
+  <div class="row text-white">
   <% if Current.user.fixed_cost %>
-    <div class="col border border-secondary-subtle rounded m-5 p-5 d-flex flex-column shadow">
-      <h5 class="text-center fw-bold mb-4">Fixkosten</h5>
-      <% Current.user.fixed_cost.as_frontend_json.each_with_index do |(key, value), i| %>
-        <% if value %>
-          <div class="p-2 rounded border border-white-subtle mt-1" style="<%= i.even? ? "background-color: #f2eee9" : "background-color: #fdfdfd" %>">
-            <%= key %>: <%= number_to_currency(value, locale: :de) %>
-          </div>
-        <% end %>
-      <% end %>
-      <br>
-      <div class="ps-3 rounded mt-3">
+    <div class="col-lg-6 p-3">
+      <div class="rounded p-3 d-flex flex-column bg-secondary">
+        <h5 class="fs-3 lead mb-4">Fixkosten</h5>
+        <table>
+          <tr style="border-top: none;">
+            <th>Posten</th>
+            <th>Kosten</th>
+          </tr>
+          <% Current.user.fixed_cost.as_frontend_json.each_with_index do |(key, value), i| %>
+            <% if key %>
+              <tr>
+                <td><%= key %></td>
+                <td><%= number_to_currency(value, locale: :de) %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+        <br>
         <b>Ausgaben insgesamt: <%= number_to_currency(Current.user.fixed_cost.sum, locale: :de) %></b>
       </div>
     </div>
   <% end %>
   </div>
-  <div class="row mt-5 shadow-lg p-3 mb-5 bg-body rounded" id="app">
+  <div class="row mt-5 shadow-lg p-3 mb-5 bg-secondary rounded" id="app">
     <div class="col border border-secondary-subtle rounded p-3">
       <h5 class="text-center fw-bold mb-4">Budget</h5>
         Pro Monat: <%= number_to_currency(Current.user.budget, locale: :de) %>
@@ -52,3 +82,24 @@
     <%= image_tag "home_money_image.jpg" ,class: "img-fluid mt-5 border border-5 border-success-subtle", style: "max-height: 70vh; border-radius: 50%" %>
   </div>
 <% end %>
+<style>
+  h1 {
+    font-size: 1.3em;
+    font-weight: 300;
+  }
+  table {
+    width: 100%;
+    border-spacing: 10px;
+    font-weight: 300;
+  }
+  tr {
+    border-top: .0625rem solid;
+    border-color: hsla(0,0%,100%,.1);
+  }
+  th {
+    font-weight: 500;
+  }
+  td, th{
+    padding: 12px;
+  }
+</style>

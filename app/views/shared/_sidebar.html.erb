@@ -1,0 +1,53 @@
+<div class="sidebar rounded">
+  <div class="sidebar-header">
+    <h5 class="sidebar-title border-bottom pb-4 mb-0 ps-2">EDIT</h5>
+  </div>
+  <div class="sidebar-body pt-3">
+    <span>
+      <i class="bi bi-clipboard-data"></i>
+      <%= link_to "Dashboard", root_path, class: "fs-6" %>
+    </span>
+    <br>
+    <span>
+      <i class="bi bi-currency-euro"></i>
+      <%= link_to "Einkommen", employment_contracts_path, class: "fs-6" %>
+    </span>
+    <br>
+    <span>
+      <i class="bi bi-graph-down-arrow"></i>
+      <%= link_to "Fixkosten", fixed_costs_path, class: "fs-6" %>
+    </span>
+    <br>
+    <span>
+      <i class="bi bi-question-circle"></i>
+      <%= link_to "About", about_path, class: "fs-6" %>
+    </span>
+  </div>
+</div>
+
+<style>
+.sidebar {
+  background-color: #42b883;
+  color: #fff;
+  position: fixed;
+  padding: 20px;
+  margin: 10px;
+  width: 230px;
+  font-size: 1.7em;
+  height: calc(100vh - 90px);
+}
+span {
+  margin-bottom: 10px;
+}
+a {
+  text-decoration: none;
+  color: #fff;
+}
+span:hover, span:hover a {
+  color: #e14eca;
+}
+i {
+  font-size: .7em;
+  padding-right: 5px;
+}
+</style>

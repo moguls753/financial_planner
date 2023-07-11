@@ -10,6 +10,7 @@
     <%= vite_client_tag %>
     <%= vite_stylesheet_tag "application.scss" %>
     <%= vite_javascript_tag 'application' %>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
     <!--
       If using a TypeScript entrypoint file:
         vite_typescript_tag 'application'
@@ -22,10 +23,11 @@
 
   </head>
 
-  <body>
+  <body class="bg-primary">
     <%= render partial: "shared/navbar" %>
+    <%= render partial: "shared/sidebar" %>
 
-    <div class="container pt-5">
+    <div class="content">
       <turbo-frame id="flash">
         <%= render partial: "shared/flash" %>
       </turbo-frame>
@@ -33,3 +35,8 @@
     </div>
   </body>
 </html>
+<style>
+  .content {
+    padding: 0px 30px 30px 270px;
+  }
+</style>

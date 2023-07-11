@@ -1,20 +1,2 @@
 @import "../stylesheets/utopia";
 @import "../stylesheets/application.bootstrap";
-
-:root {
-  --text: #363636;
-  --text-highlight: #000;
-}
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: asset-url("Inter-roman.var.woff2") format("woff2");
-  font-named-instance: "Regular";
-}
-h1 {
-  // color: var(--text-highlight);
-  color: red;
-  font-size: var(--step-3);
-}
