@@ -3,3 +3,6 @@ $secondary: #27293d;
 $light: #8f8f8f;
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons.css";
+#app {
+  background-color: $secondary;
+}
