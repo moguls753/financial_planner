@@ -1,5 +1,5 @@
 <template>
-  <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
+  <Bar id="my-chart-id" v-if="loaded" :data="chartData" />
 </template>
 
 <script>
@@ -32,9 +32,9 @@ function getGradient(ctx, chartArea) {
     width = chartWidth;
     height = chartHeight;
     gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
-    gradient.addColorStop(0, "rgb(54, 162, 235)");
-    gradient.addColorStop(0.5, "rgb(255, 205, 86)");
-    gradient.addColorStop(1, "rgb(255, 99, 132)");
+    gradient.addColorStop(0.7, "rgba(72,72,176,0.2)");
+    gradient.addColorStop(0.1, "rgba(72,72,176,0.0)");
+    gradient.addColorStop(0, "rgba(119,52,169,0)");
   }
 
   return gradient;
@@ -45,13 +45,15 @@ export default {
   components: { Bar },
   data() {
     return {
+      loaded: false,
       chartData: {
-        labels: ["January", "February", "March"],
+        labels: null,
         datasets: [
           {
-            label: "Fixkosten",
-            data: [40, 20, 12],
-            borderColor: function (context) {
+            data: null,
+            borderWidth: 2,
+            borderColor: "#1d8cf8",
+            backgroundColor: function (context) {
               const chart = context.chart;
               const { ctx, chartArea } = chart;
 
@@ -66,9 +68,25 @@ export default {
         ],
       },
       chartOptions: {
+        legend: {
+          display: false,
+        },
         responsive: true,
       },
     };
+  },
+  async mounted() {
+    this.loaded = false;
+    try {
+      const response = await fetch("/api/fixed_cost");
+      const fixedCost = await response.json();
+      this.chartData.labels = Object.keys(fixedCost);
+      this.chartData.datasets[0].data = Object.values(fixedCost);
+
+      this.loaded = true;
+    } catch (e) {
+      console.error(e);
+    }
   },
 };
 </script>

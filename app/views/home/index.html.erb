@@ -2,10 +2,10 @@
   <h1 class="m-3">FINANZPLANER</h1>
 </div>
 <% if Current.user %>
-  <div class="row text-white">
-    <div class="col-lg-6">
-      <div class="rounded p-3 d-flex flex-column bg-secondary">
-        <h5 class="fs-3 lead mb-4">Einkommen</h5>
+  <div class="row text-white g-4 mb-4">
+    <div class="col-xl-6">
+      <div class="p-3 bg-secondary rounded border border-light">
+        <h5 class="fs-5 lead mb-4">Einkommen</h5>
         <table>
           <tr style="border-top: none;">
             <th></th>
@@ -40,17 +40,18 @@
         </table>
       </div>
     </div>
-    <div class="col-lg-6 rounded" id="app">
-      <div class=" d-flex flex-column bg-secondary">
-        <h5 class="fs-3 lead mb-4">Aufteilung Fixkosten</h5>
+    <div class="col-xl-6">
+      <div class="p-3 rounded bg-secondary border border-light">
+        <h5 class="fs-5 lead mb-4">Aufteilung Fixkosten</h5>
+        <div id="app"></div>
       </div>
     </div>
   </div>
-  <div class="row text-white">
+  <div class="row text-white g-4 mb-4">
   <% if Current.user.fixed_cost %>
-    <div class="col-lg-6 p-3">
-      <div class="rounded p-3 d-flex flex-column bg-secondary">
-        <h5 class="fs-3 lead mb-4">Fixkosten</h5>
+    <div class="col-lg-6">
+      <div class="p-3 rounded bg-secondary border border-light">
+        <h5 class="fs-5 lead mb-4">Fixkosten</h5>
         <table>
           <tr style="border-top: none;">
             <th>Posten</th>
@@ -83,6 +84,9 @@
   </div>
 <% end %>
 <style>
+  h5 {
+    color: #9A9A9A;
+  }
   h1 {
     font-size: 1.3em;
     font-weight: 300;

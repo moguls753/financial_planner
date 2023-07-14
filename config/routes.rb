@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   patch "password/reset/edit", to: "password_resets#update"
 
   root to: "home#index"
+
+  get "api/fixed_cost", to: "api#fixed_cost"
 end
