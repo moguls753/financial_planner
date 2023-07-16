@@ -42,8 +42,8 @@
     </div>
     <div class="col-xl-6">
       <div class="p-3 rounded bg-secondary border border-light">
-        <h5 class="fs-5 lead mb-4">Aufteilung Fixkosten</h5>
-        <div id="app"></div>
+        <h5 class="fs-5 lead mb-4">Aufteilung Einkommen</h5>
+        <div id="income-dist-doughnut"></div>
       </div>
     </div>
   </div>
@@ -68,6 +68,12 @@
         </table>
         <br>
         <b>Ausgaben insgesamt: <%= number_to_currency(Current.user.fixed_cost.sum, locale: :de) %></b>
+      </div>
+    </div>
+    <div class="col-xl-6">
+      <div class="p-3 rounded bg-secondary border border-light">
+        <h5 class="fs-5 lead mb-4">Aufteilung Fixkosten</h5>
+        <div id="fixed-cost-dist"></div>
       </div>
     </div>
   <% end %>

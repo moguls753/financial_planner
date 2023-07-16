@@ -85,4 +85,10 @@ class EmploymentContract < ApplicationRecord
       end
     end
   end
+
+  def as_frontend_json
+    {
+      "#{organisation}": monthly_netto_salary,
+    }
+  end
 end

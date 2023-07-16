@@ -5,4 +5,8 @@ class ApiController < ApplicationController
     render json: Current.user.fixed_cost.as_frontend_json
   end
 
+  def income
+    render json: Current.user.employment_contracts.map(&:as_frontend_json).reduce({},:merge)
+  end
+
 end

@@ -44,6 +44,9 @@ let tooltipList = [...tooltipTriggerList].map(
 );
 
 // Import App Component
-import App from "../components/App.vue";
+import FixedCostDistChart from "../components/FixedCostDistChart.vue";
+import IncomeDistDoughnut from "../components/IncomeDistDoughnut.vue";
 
-const app = createApp(App).mount("#app");
+const fixedCostDistChart =
+  createApp(FixedCostDistChart).mount("#fixed-cost-dist");
+const app = createApp(IncomeDistDoughnut).mount("#income-dist-doughnut");

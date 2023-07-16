@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   get "api/fixed_cost", to: "api#fixed_cost"
+  get "api/income", to: "api#income"
 end

@@ -1,5 +1,5 @@
 <template>
-  <Bar id="my-chart-id" v-if="loaded" :data="chartData" />
+  <Bar id="my-chart-id" v-if="loaded" :options="chartOptions" :data="chartData" />
 </template>
 
 <script>
@@ -41,7 +41,7 @@ function getGradient(ctx, chartArea) {
 }
 
 export default {
-  name: "BarChart",
+  name: "FixedCostDistCart",
   components: { Bar },
   data() {
     return {
@@ -68,8 +68,10 @@ export default {
         ],
       },
       chartOptions: {
-        legend: {
-          display: false,
+        plugins: {
+          legend: {
+            display: false,
+          },
         },
         responsive: true,
       },
