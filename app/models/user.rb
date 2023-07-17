@@ -28,7 +28,12 @@ class User < ApplicationRecord
     self.employment_contracts.map(&:monthly_netto_salary).sum - fixed_cost.sum
   end
 
-  def netto_salary_sum
-    self.employment_contracts.map(&:monthly_netto_salary).sum
+  def netto_salary_sum(interval: :month)
+    case interval
+      when :month
+        self.employment_contracts.map(&:monthly_netto_salary).sum
+      when :year
+        self.employment_contracts.map(&:yearly_netto_salary).sum
+    end
   end
 end

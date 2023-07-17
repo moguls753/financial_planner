@@ -1,6 +1,3 @@
-<div class="p-1 text-white">
-  <h1 class="m-3">FINANZPLANER</h1>
-</div>
 <% if Current.user %>
   <div class="row text-white g-4 mb-4">
     <div class="col-xxl-6">
@@ -38,14 +35,13 @@
             <% end %>
           </tr>
         </table>
-        <br>
-        <b>Einnahmen insgesamt (monatlich): <%= number_to_currency(Current.user.netto_salary_sum, locale: :de) %></b>
       </div>
     </div>
     <div class="col-xxl-6">
       <div class="p-3 rounded bg-secondary border border-light">
         <h5 class="mb-2">Aufteilung Einkommen</h5>
-        <h3 class=""><%= number_to_currency(Current.user.netto_salary_sum, locale: :de) %></h3>
+        <h3 class="d-inline-block ms-2"><%= number_to_currency(Current.user.netto_salary_sum(interval: :month), locale: :de)%>p.m.</h3>
+        <h3 class="d-inline-block ms-5"><%= number_to_currency(Current.user.netto_salary_sum(interval: :year), locale: :de) %>p.a.</h3>
         <div id="income-dist-doughnut"></div>
       </div>
     </div>
@@ -110,16 +106,22 @@
   table {
     width: 100%;
     border-spacing: 10px;
-    font-weight: 300;
   }
   tr {
     border-top: .0625rem solid;
     border-color: hsla(0,0%,100%,.1);
   }
   th {
-    font-weight: 500;
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.7);
   }
   td, th{
     padding: 12px;
+  }
+  td {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
   }
 </style>
