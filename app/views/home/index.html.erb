@@ -3,9 +3,9 @@
 </div>
 <% if Current.user %>
   <div class="row text-white g-4 mb-4">
-    <div class="col-xl-6">
-      <div class="p-3 bg-secondary rounded border border-light">
-        <h5 class="fs-5 lead mb-4">Einkommen</h5>
+    <div class="col-xxl-6">
+      <div class="p-3 bg-secondary rounded border border-light" style="min-height: 382px;">
+        <h5 class="mb-2">Einkommen</h5>
         <table>
           <tr style="border-top: none;">
             <th></th>
@@ -38,20 +38,23 @@
             <% end %>
           </tr>
         </table>
+        <br>
+        <b>Einnahmen insgesamt (monatlich): <%= number_to_currency(Current.user.netto_salary_sum, locale: :de) %></b>
       </div>
     </div>
-    <div class="col-xl-6">
+    <div class="col-xxl-6">
       <div class="p-3 rounded bg-secondary border border-light">
-        <h5 class="fs-5 lead mb-4">Aufteilung Einkommen</h5>
+        <h5 class="mb-2">Aufteilung Einkommen</h5>
+        <h3 class=""><%= number_to_currency(Current.user.netto_salary_sum, locale: :de) %></h3>
         <div id="income-dist-doughnut"></div>
       </div>
     </div>
   </div>
   <div class="row text-white g-4 mb-4">
   <% if Current.user.fixed_cost %>
-    <div class="col-lg-6">
+    <div class="col-xxl-6">
       <div class="p-3 rounded bg-secondary border border-light">
-        <h5 class="fs-5 lead mb-4">Fixkosten</h5>
+        <h5 class="mb-2">Fixkosten</h5>
         <table>
           <tr style="border-top: none;">
             <th>Posten</th>
@@ -70,16 +73,17 @@
         <b>Ausgaben insgesamt: <%= number_to_currency(Current.user.fixed_cost.sum, locale: :de) %></b>
       </div>
     </div>
-    <div class="col-xl-6">
+    <div class="col-xxl-6">
       <div class="p-3 rounded bg-secondary border border-light">
-        <h5 class="fs-5 lead mb-4">Aufteilung Fixkosten</h5>
+        <h5 class="mb-2">Aufteilung Fixkosten</h5>
+        <h3 class=""><%= number_to_currency(Current.user.netto_salary_sum, locale: :de) %></h3>
         <div id="fixed-cost-dist"></div>
       </div>
     </div>
   <% end %>
   </div>
   <div class="row mt-5 shadow-lg p-3 mb-5 bg-secondary rounded" id="app">
-    <div class="col border border-secondary-subtle rounded p-3">
+    <div class="col-xxl-6 border border-secondary-subtle rounded p-3">
       <h5 class="text-center fw-bold mb-4">Budget</h5>
         Pro Monat: <%= number_to_currency(Current.user.budget, locale: :de) %>
     </div>
@@ -91,7 +95,13 @@
 <% end %>
 <style>
   h5 {
-    color: #9A9A9A;
+    color: rgb(154, 154, 154);
+    font-weight: 300;
+    font-size: 12px;
+  }
+  h3 {
+    font-weight: 100;
+    font-size: 23px;
   }
   h1 {
     font-size: 1.3em;

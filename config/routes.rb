@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :employment_contracts
 
-  resources :fixed_costs
+  resources :fixed_costs, only: [:index, :update]
 
   get "about", to: "about#index", as: :about
 

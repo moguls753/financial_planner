@@ -3,6 +3,9 @@ $secondary: #27293d;
 $light: #575a78;
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons.css";
+:root {
+  --bs-body-font-family: "Poppins", sans-serif;
+}
 #app {
   background-color: $secondary;
 }
